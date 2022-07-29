@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
-from users.models import User
+from ..users.models import User
 
 MIN_SCORE = 1
 MAX_SCORE = 10

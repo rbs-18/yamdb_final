@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-    """Сериализатор для создания пользователя."""
+    """ Serializer for creation user. """
 
     class Meta:
         fields = ('email', 'username')
@@ -24,7 +24,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 
 class TokenObtainSerializer(TokenObtainPairSerializer):
-    """Сериализатор для получения токена."""
+    """ Serializer for getting token. """
 
     username_field = User.USERNAME_FIELD
 

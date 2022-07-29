@@ -26,7 +26,7 @@ def send_registration_mail(user, token):
 
 @api_view(['POST'])
 def register_user(request):
-    """Регистрация нового пользователя."""
+    """ New user registration. """
 
     serializer = CreateUserSerializer(data=request.data)
     try:
@@ -45,6 +45,6 @@ def register_user(request):
 
 
 class TokenObtainView(TokenObtainPairView):
-    """Получение токена."""
+    """ Getting token. """
 
     serializer_class = TokenObtainSerializer
