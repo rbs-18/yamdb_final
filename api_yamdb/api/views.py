@@ -10,12 +10,10 @@ from rest_framework.response import Response
 from ..reviews.filters import TitleFilter
 from ..reviews.models import Category, Genre, Review, Title
 from .permissions import IsAdmin, IsAdminOrReadOnly, IsAuthorOrStaff
-from .serializers import (
-    CategorySerializer, CommentSerializer,
-    GenreSerializer, ReviewSerializer,
-    TitleCreateSerializer, TitleSerializer,
-    UserPatchSerializer, UserSerializer
-)
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer,
+                          TitleCreateSerializer, TitleSerializer,
+                          UserPatchSerializer, UserSerializer)
 
 User = get_user_model()
 
