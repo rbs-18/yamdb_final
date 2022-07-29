@@ -11,8 +11,8 @@ services:
     image: rbs18/yamdb:v1.1
     restart: always
     volumes:
-      - static_value:/app/static/
-      - media_value:/app/media/
+      - static_value:/app/api_yamdb/static/
+      - media_value:/app/api_yamdb/media/
     depends_on:
       - db
     env_file:
