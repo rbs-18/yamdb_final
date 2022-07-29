@@ -4,7 +4,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import filters, mixins, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import (
-    LimitOffsetPagination, PageNumberPagination
+    LimitOffsetPagination,
+    PageNumberPagination
 )
 from rest_framework.response import Response
 
@@ -12,8 +13,9 @@ from reviews.filters import TitleFilter
 from reviews.models import Category, Genre, Review, Title
 from .permissions import IsAdmin, IsAdminOrReadOnly, IsAuthorOrStaff
 from .serializers import (
-    CategorySerializer, CommentSerializer, GenreSerializer,
-    ReviewSerializer, TitleCreateSerializer, TitleSerializer,
+    CategorySerializer, CommentSerializer,
+    GenreSerializer, ReviewSerializer,
+    TitleCreateSerializer, TitleSerializer,
     UserPatchSerializer, UserSerializer
 )
 
@@ -30,13 +32,11 @@ class CreateDeleteListViewSet(
 
 
 class UsersViewSet(viewsets.ModelViewSet):
-    """Вьюсет для пользователей."""
+    """ ViewSet for users model. """
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [
-        IsAdmin,
-    ]
+    permission_classes = [IsAdmin]
     pagination_class = PageNumberPagination
     search_fields = ('username')
     lookup_field = 'username'
@@ -58,13 +58,11 @@ class UsersViewSet(viewsets.ModelViewSet):
 
 
 class CategoryViewSet(CreateDeleteListViewSet):
-    """Вьюсет для категорий."""
+    """ ViewSet for category model. """
 
     queryset = Category.objects.all().order_by('id')
     serializer_class = CategorySerializer
-    permission_classes = [
-        IsAdminOrReadOnly,
-    ]
+    permission_classes = [IsAdminOrReadOnly]
     pagination_class = LimitOffsetPagination
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
@@ -72,13 +70,11 @@ class CategoryViewSet(CreateDeleteListViewSet):
 
 
 class GenreViewSet(CreateDeleteListViewSet):
-    """Вьюсет для жанров."""
+    """ ViewSet for genre model. """
 
     queryset = Genre.objects.all().order_by('id')
     serializer_class = GenreSerializer
-    permission_classes = [
-        IsAdminOrReadOnly,
-    ]
+    permission_classes = [IsAdminOrReadOnly]
     pagination_class = PageNumberPagination
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
@@ -86,15 +82,13 @@ class GenreViewSet(CreateDeleteListViewSet):
 
 
 class TitleViewSet(viewsets.ModelViewSet):
-    """Вьюсет для заголовков."""
+    """ ViewSet for title model. """
 
     queryset = Title.objects.all().annotate(
         Avg('reviews__score')
     ).order_by('name')
     serializer_class = TitleSerializer
-    permission_classes = [
-        IsAdminOrReadOnly,
-    ]
+    permission_classes = [IsAdminOrReadOnly]
     pagination_class = PageNumberPagination
     filterset_class = TitleFilter
 
@@ -105,12 +99,10 @@ class TitleViewSet(viewsets.ModelViewSet):
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
-    """Вьюсет для ревью."""
+    """ ViewSet for review model. """
 
     serializer_class = ReviewSerializer
-    permission_classes = [
-        IsAuthorOrStaff,
-    ]
+    permission_classes = [IsAuthorOrStaff]
 
     def get_title(self):
         return get_object_or_404(Title, pk=self.kwargs.get('title_id'))
@@ -123,12 +115,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    """Вьюсет для комментариев."""
+    """ ViewSet for comment model. """
 
     serializer_class = CommentSerializer
-    permission_classes = [
-        IsAuthorOrStaff,
-    ]
+    permission_classes = [IsAuthorOrStaff]
     pagination_class = PageNumberPagination
 
     def get_queryset(self):

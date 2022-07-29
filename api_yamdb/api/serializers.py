@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Сериализатор для пользователя."""
+    """ Serializer for User model. """
 
     class Meta:
         fields = (
@@ -30,7 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserPatchSerializer(serializers.ModelSerializer):
-    """Сериализатор для пользователя с ограничением изменения роли."""
+    """Serializer for User model with limit of changing role. """
 
     class Meta:
         fields = (
@@ -46,7 +46,7 @@ class UserPatchSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    """Сериализатор для категорий."""
+    """ Serializer for Category model. """
 
     class Meta:
         fields = ('name', 'slug')
@@ -54,7 +54,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class GenreSerializer(serializers.ModelSerializer):
-    """Сериализатор для жанров."""
+    """ Serializer for Genre model. """
 
     class Meta:
         fields = ('name', 'slug')
@@ -62,7 +62,7 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class TitleSerializer(serializers.ModelSerializer):
-    """Сериализатор для заголовка."""
+    """ Serializer for Title model. """
 
     rating = serializers.IntegerField(
         source='reviews__score__avg',
@@ -91,7 +91,7 @@ class TitleSerializer(serializers.ModelSerializer):
 
 
 class TitleCreateSerializer(serializers.ModelSerializer):
-    """Сериализатор для создания заголовка."""
+    """ Serializer for creating Title object. """
 
     genre = serializers.SlugRelatedField(
         queryset=Genre.objects.all(),
@@ -109,7 +109,7 @@ class TitleCreateSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    """Сериализатор для ревью."""
+    """ Serializer for Review model. """
 
     title = serializers.SlugRelatedField(
         read_only=True,
@@ -137,7 +137,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    """Сериализатор для комментариев."""
+    """ Serializer for Comment model. """
 
     author = serializers.SlugRelatedField(
         read_only=True,
