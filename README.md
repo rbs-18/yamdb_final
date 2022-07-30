@@ -4,7 +4,7 @@
 ## DESCRIPTION
 Project allows to collect reviews on compositions. There is admin panel.
 Admin can create compositions (from API or admin panel), genres and categories.
-Users can write reviews on compositions and comment them.
+Users can write reviews on compositions and comment them. The project is hosted on the server 51.250.29.192
 
 --------------------------------------------------------------------------------------
 
@@ -486,11 +486,16 @@ Administrator, Moderator, Owner
 
 
 ## HOW TO START PROJECT
+### IN INTERNET
+Go to 51.250.29.192. It's all!
+
+### LOCALLY (IF SERVER DOESN'T WORK)
 - Clone repository and going:
 ```
 git clone ...
-cd /infra_sp2
+cd /infra
 ```
+- Change nginx settings (servername)
 - Create .env file (like template)
 
 SECRET_KEY=...
